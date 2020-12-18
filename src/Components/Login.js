@@ -5,7 +5,7 @@ import jwt_decode from 'jwt-decode';
 import setAuthToken from '../utilities/setAuthToken';
 import FormField from './FormField';
 
-const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
+import REACT_APP_SERVER_URL from '../keys';
 
 class Login extends Component {
     constructor(props) {
@@ -34,7 +34,7 @@ class Login extends Component {
     };
 
     render() {
-        if (this.props.user) {
+        if (this.props.currentUser) {
             return <Redirect to="/profile" />;
         }
 

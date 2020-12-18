@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import FormField from './FormField';
+import REACT_APP_SERVER_URL from '../keys';
 
 class SignUp extends Component {
     constructor(props) {
@@ -24,7 +25,7 @@ class SignUp extends Component {
         if (this.state.password === this.state.confirmPassword) {
             const newUser = { username: this.state.username, email: this.state.email, password: this.state.password };
             axios
-                .post(`${process.env.REACT_APP_SERVER_URL}/api/users/register`, newUser)
+                .post(`${REACT_APP_SERVER_URL}/api/users/register`, newUser)
                 .then((response) => {
                     console.log(response);
                     this.setState({ redirect: true });
