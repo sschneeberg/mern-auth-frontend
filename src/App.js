@@ -11,10 +11,10 @@ import SignUp from './Components/Signup';
 import Login from './Components/Login';
 import './App.css';
 
-const PrivateRoute = ({ Component: Component, ...rest }) => {
+const PrivateRoute = ({ component: Component, ...rest }) => {
     const user = localStorage.getItem('jwtToken');
+    //prettier-ignore
     return (
-        //prettier-ignore
         <Route {...rest} render={(props) => {
                 return user ? <Component {...rest} {...props} /> : <Redirect to="/login" />;
             }}
@@ -53,6 +53,8 @@ function App() {
         }
     };
 
+    console.log(currentUser);
+
     return (
         <div className="App">
             <Nav handleLogout={handleLogout} isAuth={isAuthenticated} />
@@ -65,7 +67,7 @@ function App() {
                     <Route
                         path="/login"
                         render={(props) => {
-                            return <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} currentUser={currentUser} />;
+                            return <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />;
                         }}
                     />
                 </Switch>

@@ -34,7 +34,7 @@ class Login extends Component {
     };
 
     render() {
-        if (this.props.currentUser) {
+        if (this.props.user) {
             return <Redirect to="/profile" />;
         }
 
