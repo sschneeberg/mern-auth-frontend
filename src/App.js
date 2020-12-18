@@ -1,9 +1,14 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utilities/setAuthToken';
 import Welcome from './Components/Welcome';
+import About from './Components/About';
 import Nav from './Components/Nav';
+import Footer from './Components/Footer';
+import Profile from './Components/Profile';
+import SignUp from './Components/Signup';
+import Login from './Components/Login';
 import './App.css';
 
 const PrivateRoute = ({ Component: Component, ...rest }) => {
@@ -51,7 +56,21 @@ function App() {
     return (
         <div className="App">
             <Nav handleLogout={handleLogout} isAuth={isAuthenticated} />
-            <Welcome />
+            <div className="container mt-5">
+                <Switch>
+                    <Route path="/" exact component={Welcome} />
+                    <PrivateRoute path="/profile" component={Profile} user={currentUser} />
+                    <Route path="/about" component={About} />
+                    <Route path="/signup" component={SignUp} />
+                    <Route
+                        path="/login"
+                        render={(props) => {
+                            return <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} currentUser={currentUser} />;
+                        }}
+                    />
+                </Switch>
+            </div>
+            <Footer />
         </div>
     );
 }

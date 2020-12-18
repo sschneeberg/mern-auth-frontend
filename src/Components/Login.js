@@ -22,7 +22,7 @@ class Login extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const userDate = { email: this.state.email, password: this.state.password };
+        const userData = { email: this.state.email, password: this.state.password };
         axios.post(`${REACT_APP_SERVER_URL}/api/users/login`, userData).then((response) => {
             const { token } = response.data;
             //set token, headers, and current user
@@ -42,7 +42,7 @@ class Login extends Component {
             <div className="row mt-4">
                 <div className="col-md-7 offset-md-3">
                     <div className="card card-body">
-                        <h2>Sign Up</h2>
+                        <h2>Login</h2>
                         <form
                             onSubmit={(e) => {
                                 this.handleSubmit(e);
@@ -62,4 +62,4 @@ class Login extends Component {
     }
 }
 
-export default SignUp;
+export default Login;
