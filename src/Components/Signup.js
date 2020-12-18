@@ -35,6 +35,7 @@ class SignUp extends Component {
                     console.log(err);
                 });
         }
+        //else: add logic to handle passwords do not match, password too short, etc
     };
 
     render() {
@@ -59,6 +60,8 @@ class SignUp extends Component {
                                 <FormField type="password" label="password" display="Password: " value={this.state.password} onChange={this.onChange} />
 
                                 <FormField type="password" label="confirmPassword" display="Confirm Password: " value={this.state.confirmPassword} onChange={this.onChange} />
+
+                                <input type="submit" className="btn btn-primary float-right" value="Submit" />
                             </div>
                         </form>
                     </div>
